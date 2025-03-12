@@ -1,18 +1,21 @@
 import express from 'express'
+import cors from "cors";
+
 const app = express()
-const port = 3000
 
 import ordersRoutes from "./routes/orders"
 
 
 app.use(express.json())
 app.use('/orders', ordersRoutes)
-
+app.use(cors());
 
 app.get('/', (req, res) =>{
     res.send("Hello Wordl")
 })
 
-app.listen(port, () => {
-    console.log(`Listening in ${port}`)
+const PORT = 4444
+
+app.listen(PORT, () => {
+    console.log(`Listening in ${PORT}`)
 })
