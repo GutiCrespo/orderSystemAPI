@@ -1,10 +1,11 @@
 {
-  "name": "turismo",
+  "name": "ordersystem",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "npx ts-node-dev --respawn index.ts",
+    "dev": "ts-node-dev --respawn --transpile-only index.ts",
+    "start": "ts-node index.ts",
     "vercel-build": "npx prisma migrate deploy"
   },
   "keywords": [],
