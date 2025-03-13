@@ -10,6 +10,27 @@ router.get('/', async (req, res) =>{
     res.status(200).json(orders)
 })
 
+// GET with Filters
+router.get('/filter', async (req, res) => {
+    const { state, id } = req.query;
+
+    try {
+        const orders = await prisma.order.findMany({
+            where: {
+                ...(state && { state: state as 'pending' | 'in_progress' | 'completed' }),
+                ...(id && { id: Number(id) })
+            }
+        });
+
+        res.status(200).json(orders);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Error filtering orders' });
+    }
+});
+
+
+
 // Post
 router.post('/', async (req, res) =>{
         
@@ -39,7 +60,7 @@ router.put('/:id', async (req, res) =>{
     const { id } = req.params
     
     try {
-    // Encontrando a order a ser alterada
+    // Finding the right order to alter
     const order = await prisma.order.findUnique({
         where: { id: Number(id) }
     });
