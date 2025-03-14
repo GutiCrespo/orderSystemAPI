@@ -5,15 +5,7 @@ import dotenv from 'dotenv'
 dotenv.config();
 const app = express()
 
-
-const corsOrigin = process.env.CORS_ORIGIN || "*"
-app.use(cors({
-
-    // If this website goes to web, we have to change the .env to new route 
-    origin: corsOrigin,
-    methods: "GET,POST,PUT,DELETE",
-    allowedHeaders: "Content-Type,Authorization"
-}));
+app.use(cors({ origin: true, credentials: true}));
 
 import ordersRoutes from "./routes/orders"
 

@@ -43,13 +43,22 @@ router.post('/', async (req, res) =>{
     res.status(201).json(orders)
 })
 
+// Delete all registers
+router.delete('/delete-all', async (req, res) => {
+    try {
+        await prisma.order.deleteMany()
+        // await prisma.$executeRaw`ALTER TABLE Order AUTO_INCREMENT = 1`;
+        res.status(200).json({ message: 'Well done, you did it! Orders Deleted.' })
+    } catch (error) {
+        res.status(500).json({ error: 'Error to delete all', details: error });
+    }
+})
+
 // Delete
 router.delete('/:id', async (req, res) =>{
     const { id } = req.params
 
-    // Para deletar um registro:
     const orders = await prisma.order.delete({
-        // Verifica qual o ID a ser excluído:
         where: {id: Number(id)}
     })
     res.status(200).json(orders)
