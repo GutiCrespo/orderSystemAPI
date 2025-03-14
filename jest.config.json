@@ -1,0 +1,9 @@
+{
+  "preset": "ts-jest",
+  "testEnvironment": "node",
+  "testMatch": ["**/routes/test/**/*.test.ts"], 
+  "collectCoverage": true,
+  "collectCoverageFrom": ["routes/**/*.ts"],
+  "coverageDirectory": "coverage",
+  "verbose": true
+}

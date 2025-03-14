@@ -6,7 +6,9 @@ const prisma = new PrismaClient()
 
 // Get
 router.get('/', async (req, res) =>{
-    const orders = await prisma.order.findMany()
+    const orders = await prisma.order.findMany({
+        orderBy: { id: 'asc' }
+    });
     res.status(200).json(orders)
 })
 
