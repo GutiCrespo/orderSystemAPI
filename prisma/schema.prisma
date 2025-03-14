@@ -10,8 +10,7 @@ generator client {
 
 datasource db {
   // When using Neon as database:
-  // provider = "postgresql"
-  provider = "mysql"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
