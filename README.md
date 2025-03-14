@@ -37,7 +37,19 @@ npx prisma migrate dev
 ```
 This will apply the necessary migrations to set up the database schema.
 
-### 5. Start the API
+### 5. Enable local execution  
+In the `index.ts` file, **uncomment** the following lines at the end of the file:  
+```ts
+// const PORT = 4444
+// if (process.env.NODE_ENV !== "test") {
+//     app.listen(PORT, () => {
+//       console.log(`Listening on ${PORT}`);
+//     });
+// }
+```
+This is necessary to start the local server, as this part is disabled for deployment in **Vercel**.
+
+### 6. Start the API
 ```sh
 npm run dev
 ```
@@ -59,7 +71,6 @@ NEXT_PUBLIC_API_BASE_URL="http://localhost:4444"
 ```
 This ensures the front-end communicates with your local API instead of the cloud version.
 
----
 
 ## Tools Used
 
